@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRATEX · PESTLE Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #0f2040;
+    --navy-light: #1a3258;
+    --slate: #1e3a5f;
+    --steel: #2c5282;
+    --accent: #c8973a;
+    --accent-light: #e8b84b;
+    --accent-pale: #f5e6c8;
+    --crimson: #8b1a1a;
+    --sage: #2d5a3d;
+    --text-primary: #f0ece4;
+    --text-secondary: #a8b8cc;
+    --text-muted: #6b7f96;
+    --border: rgba(200, 151, 58, 0.2);
+    --border-subtle: rgba(168, 184, 204, 0.12);
+    --card-bg: rgba(15, 32, 64, 0.8);
+    --glow: rgba(200, 151, 58, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(44,82,130,0.3) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a8b8cc' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    border-bottom: 1px solid var(--border);
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 18px; height: 18px; fill: var(--navy); }
+  .logo-text { font-family: 'IBM Plex Sans', sans-serif; }
+  .logo-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+  }
+  .logo-tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .header-nav a { color: inherit; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+  .header-nav a:hover { color: var(--accent); }
+  .header-badge {
+    background: rgba(200,151,58,0.1);
+    border: 1px solid rgba(200,151,58,0.3);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 4rem;
+    align-items: start;
+  }
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+    display: block;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ─── INPUT PANEL ─── */
+  .input-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+  .input-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .panel-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .input-field-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .input-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  textarea, select, input[type="text"] {
+    width: 100%;
+    background: rgba(10,22,40,0.8);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+  }
+  textarea:focus, select:focus, input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(200,151,58,0.1);
+  }
+  textarea { min-height: 90px; line-height: 1.6; }
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a8b8cc' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  select option { background: var(--navy-mid); }
+
+  .analyze-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--navy);
+    border: none;
+    padding: 1rem 1.5rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1.25rem;
+  }
+  .analyze-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.4s;
+  }
+  .analyze-btn:hover { background: var(--accent-light); }
+  .analyze-btn:hover::before { left: 100%; }
+  .analyze-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--accent);
+  }
+  .analyze-btn:disabled::before { display: none; }
+
+  .example-queries {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .example-label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+  .example-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .chip {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: transparent;
+  }
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(200,151,58,0.05);
+  }
+
+  /* ─── LOADING ─── */
+  #loading {
+    display: none;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+  }
+  .loading-inner {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .loading-spinner {
+    width: 48px; height: 48px;
+    border: 2px solid rgba(200,151,58,0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+  }
+  .loading-steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .loading-step {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .step-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: pulse-dot 2s infinite;
+  }
+  .loading-step:nth-child(2) .step-dot { animation-delay: 0.4s; }
+  .loading-step:nth-child(3) .step-dot { animation-delay: 0.8s; }
+  .loading-step:nth-child(4) .step-dot { animation-delay: 1.2s; }
+  @keyframes pulse-dot {
+    0%, 100% { background: var(--text-muted); transform: scale(1); }
+    50% { background: var(--accent); transform: scale(1.4); }
+  }
+
+  /* ─── RESULTS ─── */
+  #results { display: none; max-width: 1280px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+  .results-header {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+  }
+  .results-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+  .results-meta {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-align: right;
+  }
+  .results-meta span { display: block; }
+  .results-meta strong { color: var(--text-secondary); }
+
+  .new-analysis-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  .new-analysis-btn:hover { background: rgba(200,151,58,0.08); border-color: var(--accent); }
+
+  /* ─── PESTLE TABLE ─── */
+  .section-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+  .section-block {
+    margin-bottom: 3rem;
+  }
+
+  .pestle-table-wrap {
+    overflow-x: auto;
+  }
+  .pestle-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .pestle-table thead tr {
+    background: rgba(200,151,58,0.08);
+    border-bottom: 1px solid var(--border);
+  }
+  .pestle-table th {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .pestle-table td {
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+  .pestle-table tr:hover td { background: rgba(200,151,58,0.02); }
+  .pestle-table td:first-child {
+    white-space: nowrap;
+    width: 140px;
+  }
+  .factor-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+  }
+  .factor-P { background: rgba(139,26,26,0.15); color: #e07070; border-left: 3px solid #8b1a1a; }
+  .factor-E { background: rgba(200,151,58,0.12); color: #c8973a; border-left: 3px solid #c8973a; }
+  .factor-S { background: rgba(45,90,61,0.2); color: #6dbf8a; border-left: 3px solid #2d5a3d; }
+  .factor-T { background: rgba(44,82,130,0.2); color: #79a8e0; border-left: 3px solid #2c5282; }
+  .factor-L { background: rgba(90,60,120,0.2); color: #b08ee0; border-left: 3px solid #5a3c78; }
+  .factor-En { background: rgba(30,90,90,0.2); color: #5ecece; border-left: 3px solid #1e5a5a; }
+
+  .impact-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .impact-high { background: rgba(139,26,26,0.2); color: #e07070; border: 1px solid rgba(139,26,26,0.4); }
+  .impact-medium { background: rgba(200,151,58,0.15); color: #c8973a; border: 1px solid rgba(200,151,58,0.3); }
+  .impact-low { background: rgba(45,90,61,0.15); color: #6dbf8a; border: 1px solid rgba(45,90,61,0.3); }
+
+  /* ─── ANALYSIS SECTION ─── */
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .analysis-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    padding: 1.75rem;
+    position: relative;
+    backdrop-filter: blur(6px);
+  }
+  .analysis-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .card-opportunities::before { background: var(--sage); }
+  .card-risks::before { background: var(--crimson); }
+  .card-full { grid-column: 1 / -1; }
+
+  .card-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+  .card-opportunities .card-title { color: #6dbf8a; }
+  .card-risks .card-title { color: #e07070; }
+  .card-neutral .card-title { color: var(--accent); }
+
+  .analysis-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+  .analysis-text p { margin-bottom: 0.85rem; }
+  .analysis-text p:last-child { margin-bottom: 0; }
+
+  /* ─── RECOMMENDATIONS ─── */
+  .recs-list {
+    counter-reset: rec-counter;
+    list-style: none;
+  }
+  .rec-item {
+    counter-increment: rec-counter;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: start;
+  }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(200,151,58,0.25);
+    line-height: 1;
+    text-align: right;
+  }
+  .rec-num::before { content: counter(rec-counter, decimal-leading-zero); }
+  .rec-content {}
+  .rec-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+  .rec-desc {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+  .rec-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    padding: 2px 7px;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── SOURCES ─── */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .source-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .source-card:hover { border-color: rgba(200,151,58,0.3); }
+  .source-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+  .source-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .source-pub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+  .source-url {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--steel);
+    word-break: break-all;
+    line-height: 1.4;
+  }
+  .source-type {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    padding: 2px 6px;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+    margin: 2.5rem 0;
+  }
+
+  /* ─── DISCLAIMER ─── */
+  .disclaimer {
+    background: rgba(200,151,58,0.04);
+    border: 1px solid rgba(200,151,58,0.15);
+    padding: 1.25rem;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .disclaimer-icon { color: var(--accent); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .disclaimer-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.73rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  footer a { color: inherit; text-decoration: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+    .analysis-grid { grid-template-columns: 1fr; }
+    .header-nav { display: none; }
+    h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="logo-text">
+        <div class="logo-name">STRATEX</div>
+        <div class="logo-tagline">Intelligence Platform</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="#">Analysis</a>
+      <a href="#">Methodology</a>
+      <a href="#">Research</a>
+      <a href="#">About</a>
+      <span class="header-badge">AI-POWERED</span>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero-section">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Geopolitical Intelligence</div>
+    <h1>PESTLE Analysis<br>for <em>Strategic</em><br>Decision-Making</h1>
+    <p class="hero-desc">
+      Synthesize political, economic, social, technological, legal, and environmental intelligence from authoritative global sources — government reports, peer-reviewed research, think tank publications, and international media — into structured strategic assessments.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Analysis Dimensions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">AI</span>
+        <span class="stat-label">Powered Synthesis</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Live</span>
+        <span class="stat-label">Web Intelligence</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-panel">
+    <div class="panel-title">· New Analysis ·</div>
+
+    <div class="input-field-wrap">
+      <label class="input-label" for="scenario-input">Geopolitical Scenario / Event / Strategy</label>
+      <textarea id="scenario-input" placeholder="e.g. India-Middle East-Europe Economic Corridor (IMEC) and its implications for regional trade architecture..."></textarea>
+    </div>
+
+    <div class="input-field-wrap">
+      <label class="input-label" for="region-select">Primary Region of Focus</label>
+      <select id="region-select">
+        <option value="">Global / Multi-Region</option>
+        <option value="South Asia">South Asia</option>
+        <option value="Southeast Asia">Southeast Asia</option>
+        <option value="East Asia">East Asia & Pacific</option>
+        <option value="Middle East">Middle East & North Africa</option>
+        <option value="Sub-Saharan Africa">Sub-Saharan Africa</option>
+        <option value="Europe">Europe</option>
+        <option value="North America">North America</option>
+        <option value="Latin America">Latin America & Caribbean</option>
+        <option value="Central Asia">Central Asia</option>
+        <option value="Arctic">Arctic & Polar Regions</option>
+      </select>
+    </div>
+
+    <div class="input-field-wrap">
+      <label class="input-label" for="depth-select">Analysis Depth</label>
+      <select id="depth-select">
+        <option value="standard">Standard (Core factors)</option>
+        <option value="comprehensive" selected>Comprehensive (With sub-factors)</option>
+        <option value="strategic">Strategic (With scenario forecasting)</option>
+      </select>
+    </div>
+
+    <button class="analyze-btn" id="analyze-btn" onclick="runAnalysis()">
+      ⬡ Run PESTLE Analysis
+    </button>
+
+    <div class="example-queries">
+      <div class="example-label">Quick examples —</div>
+      <div class="example-chips">
+        <span class="chip" onclick="setExample(this)">China Belt & Road Initiative</span>
+        <span class="chip" onclick="setExample(this)">NATO Eastern Flank Expansion</span>
+        <span class="chip" onclick="setExample(this)">Global AI Governance Frameworks</span>
+        <span class="chip" onclick="setExample(this)">India's semiconductor strategy</span>
+        <span class="chip" onclick="setExample(this)">BRICS currency de-dollarization</span>
+        <span class="chip" onclick="setExample(this)">Arctic sovereignty disputes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loading-inner">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loading-text">Initializing intelligence synthesis...</div>
+    <div class="loading-steps">
+      <div class="loading-step"><span class="step-dot"></span> Querying authoritative sources</div>
+      <div class="loading-step"><span class="step-dot"></span> Synthesizing intelligence</div>
+      <div class="loading-step"><span class="step-dot"></span> Structuring PESTLE matrix</div>
+      <div class="loading-step"><span class="step-dot"></span> Generating recommendations</div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="results-header">
+    <div>
+      <div class="results-eyebrow">PESTLE Intelligence Report</div>
+      <div class="results-title" id="results-title"></div>
+    </div>
+    <div class="results-meta">
+      <span id="results-date"></span>
+      <span id="results-region"></span>
+      <button class="new-analysis-btn" onclick="resetAnalysis()">← New Analysis</button>
+    </div>
+  </div>
+
+  <!-- PESTLE TABLE -->
+  <div class="section-block">
+    <div class="section-header">01 · PESTLE Matrix</div>
+    <div class="pestle-table-wrap">
+      <table class="pestle-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th style="min-width:100px">Dimension</th>
+            <th style="min-width:380px">Key Findings & Implications</th>
+            <th style="min-width:90px">Impact</th>
+            <th style="min-width:100px">Trajectory</th>
+          </tr>
+        </thead>
+        <tbody id="pestle-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- STRATEGIC ANALYSIS -->
+  <div class="section-block">
+    <div class="section-header">02 · Strategic Analysis</div>
+    <div class="analysis-grid" id="analysis-grid"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- POLICY RECOMMENDATIONS -->
+  <div class="section-block">
+    <div class="section-header">03 · Policy Recommendations</div>
+    <ol class="recs-list" id="recs-list"></ol>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SOURCES -->
+  <div class="section-block">
+    <div class="section-header">04 · Sources & References</div>
+    <div class="sources-grid" id="sources-grid"></div>
+
+    <div class="disclaimer">
+      <span class="disclaimer-icon">⚠</span>
+      <div class="disclaimer-text">
+        <strong style="color: var(--text-secondary)">Analytical Disclaimer:</strong> This report is generated by STRATEX AI through synthesis of publicly available sources and large language model reasoning. It is intended for strategic orientation and research purposes only. Users should verify critical claims through primary sources before informing policy decisions. STRATEX does not assume responsibility for decisions made on the basis of this analysis.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 STRATEX Intelligence Platform · AI-Powered Geopolitical Analysis</span>
+  <span>Powered by Claude · Anthropic</span>
+</footer>
+
+<script>
+const SYSTEM_PROMPT = `You are STRATEX, an elite geopolitical intelligence analyst at a world-leading think tank — modeled on the analytical rigour of RAND Corporation, CSIS, Brookings Institution, and the Observer Research Foundation. Your expertise spans international relations, political economy, security studies, technology policy, and environmental governance.
+
+When given a geopolitical scenario, event, initiative, or strategy, you conduct a deep, authoritative PESTLE analysis by drawing on your knowledge of:
+- Government reports and policy documents (White Papers, NDCs, NSS documents)
+- Peer-reviewed academic journals (International Security, Foreign Affairs, SIPRI, World Development, etc.)
+- Think tank publications (RAND, CSIS, Chatham House, ORF, Brookings, IISS, Carnegie Endowment)
+- International organizations (UN, World Bank, IMF, WTO, OECD, IAEA reports)
+- Credible international media (Reuters, AP, BBC, Financial Times, The Economist)
+
+Your analysis must be substantive, specific, and cite real, authoritative sources with proper titles, publication names, and URLs where applicable.
+
+Respond ONLY with a valid JSON object — no preamble, no markdown fences, no extra text. The JSON must follow this exact structure:
+
+{
+  "title": "concise descriptive title of the scenario",
+  "executive_summary": "2-3 sentence executive overview",
+  "pestle": [
+    {
+      "factor": "P",
+      "dimension": "Political",
+      "findings": "detailed, specific analytical findings with named actors, policies, and events (3-5 sentences)",
+      "impact": "High|Medium|Low",
+      "trajectory": "Escalating|Stable|Declining|Uncertain"
+    }
+    // repeat for E (Economic), S (Social), T (Technological), L (Legal), En (Environmental)
+  ],
+  "strategic_analysis": {
+    "opportunities": "3-4 specific strategic opportunities with geopolitical detail",
+    "risks": "3-4 concrete risks with causal chains",
+    "cross_cutting_themes": "2-3 overarching themes connecting PESTLE dimensions",
+    "outlook": "12-24 month forward-looking strategic assessment"
+  },
+  "recommendations": [
+    {
+      "title": "concise recommendation title",
+      "description": "specific, actionable 2-3 sentence recommendation with named actors or institutions",
+      "tag": "Immediate|Short-Term|Long-Term|Structural"
+    }
+  ],
+  "sources": [
+    {
+      "title": "exact publication title",
+      "publisher": "publishing organization",
+      "url": "full URL or DOI where available",
+      "type": "Government Report|Academic Journal|Think Tank|International Organization|News Media"
+    }
+  ]
+}
+
+Ensure:
+- PESTLE findings are substantive (4-6 sentences each), specific, and analytically rigorous
+- Sources are real, authoritative, and verifiable (6-10 sources minimum)
+- Recommendations are concrete and actionable, not generic platitudes
+- The analysis reflects the analytical depth and style of a senior policy analyst
+- Use real geopolitical actors, institutions, treaties, and events by name`;
+
+function setExample(el) {
+  document.getElementById('scenario-input').value = el.textContent;
+}
+
+function resetAnalysis() {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('hero-section').style.display = 'grid';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function runAnalysis() {
+  const scenario = document.getElementById('scenario-input').value.trim();
+  if (!scenario) {
+    document.getElementById('scenario-input').style.borderColor = 'rgba(224,112,112,0.6)';
+    setTimeout(() => document.getElementById('scenario-input').style.borderColor = '', 1500);
+    return;
+  }
+
+  const region = document.getElementById('region-select').value;
+  const depth = document.getElementById('depth-select').value;
+
+  const btn = document.getElementById('analyze-btn');
+  btn.disabled = true;
+  btn.textContent = '⬡ Synthesizing Intelligence...';
+
+  document.getElementById('hero-section').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const loadingMessages = [
+    'Querying authoritative source databases...',
+    'Cross-referencing think tank publications...',
+    'Synthesizing PESTLE intelligence matrix...',
+    'Generating strategic assessment...',
+    'Formulating policy recommendations...',
+    'Compiling source bibliography...'
+  ];
+  let msgIdx = 0;
+  const msgInterval = setInterval(() => {
+    msgIdx = (msgIdx + 1) % loadingMessages.length;
+    document.getElementById('loading-text').textContent = loadingMessages[msgIdx];
+  }, 2200);
+
+  const userPrompt = `Conduct a comprehensive PESTLE analysis for the following geopolitical scenario:
+
+SCENARIO: ${scenario}
+${region ? `PRIMARY REGION: ${region}` : 'SCOPE: Global / Multi-Region'}
+ANALYSIS DEPTH: ${depth}
+
+Draw on authoritative sources — government reports, peer-reviewed research, leading think tank publications (RAND, CSIS, Chatham House, Brookings, ORF, Carnegie), international organization reports, and credible international media — to produce a rigorous, actionable intelligence assessment.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    const data = await response.json();
+    clearInterval(msgInterval);
+
+    const raw = data.content.map(b => b.text || '').join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(clean);
+
+    renderResults(result, scenario, region);
+
+  } catch (err) {
+    clearInterval(msgInterval);
+    console.error(err);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('hero-section').style.display = 'grid';
+    document.getElementById('scenario-input').style.borderColor = 'rgba(224,112,112,0.6)';
+    document.getElementById('scenario-input').value = '';
+    document.getElementById('scenario-input').placeholder = 'Analysis failed — please try again. Check console for details.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '⬡ Run PESTLE Analysis';
+  }
+}
+
+function renderResults(data, rawScenario, region) {
+  document.getElementById('loading').style.display = 'none';
+
+  document.getElementById('results-title').textContent = data.title || rawScenario;
+  document.getElementById('results-date').innerHTML = `<strong>Generated:</strong> ${new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' })}`;
+  document.getElementById('results-region').innerHTML = region ? `<strong>Region:</strong> ${region}` : '';
+
+  // PESTLE TABLE
+  const tbody = document.getElementById('pestle-tbody');
+  tbody.innerHTML = '';
+  const factorLabels = {
+    P: 'Political', E: 'Economic', S: 'Social',
+    T: 'Technological', L: 'Legal', En: 'Environmental'
+  };
+  const trajectoryIcons = {
+    'Escalating': '↑ Escalating',
+    'Stable': '→ Stable',
+    'Declining': '↓ Declining',
+    'Uncertain': '◈ Uncertain'
+  };
+
+  (data.pestle || []).forEach(row => {
+    const factorKey = row.factor === 'En' ? 'En' : row.factor;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="factor-badge factor-${factorKey}">${row.factor}</span></td>
+      <td style="font-family:'IBM Plex Sans',sans-serif;font-size:0.78rem;font-weight:500;color:var(--text-primary);letter-spacing:0.05em">${row.dimension || factorLabels[row.factor] || row.factor}</td>
+      <td>${row.findings}</td>
+      <td><span class="impact-badge impact-${(row.impact||'medium').toLowerCase()}">${row.impact}</span></td>
+      <td style="font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--text-muted);letter-spacing:0.05em">${trajectoryIcons[row.trajectory] || row.trajectory || '—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // STRATEGIC ANALYSIS
+  const grid = document.getElementById('analysis-grid');
+  grid.innerHTML = '';
+  const sa = data.strategic_analysis || {};
+
+  if (sa.opportunities) {
+    grid.innerHTML += `
+      <div class="analysis-card card-opportunities">
+        <div class="card-title">▲ Strategic Opportunities</div>
+        <div class="analysis-text">${formatParas(sa.opportunities)}</div>
+      </div>`;
+  }
+  if (sa.risks) {
+    grid.innerHTML += `
+      <div class="analysis-card card-risks">
+        <div class="card-title">▼ Principal Risks</div>
+        <div class="analysis-text">${formatParas(sa.risks)}</div>
+      </div>`;
+  }
+  if (sa.cross_cutting_themes) {
+    grid.innerHTML += `
+      <div class="analysis-card card-neutral card-full" style="--before-color:var(--accent)">
+        <style>.card-neutral::before{background:var(--accent)!important}</style>
+        <div class="card-title">◈ Cross-Cutting Themes</div>
+        <div class="analysis-text">${formatParas(sa.cross_cutting_themes)}</div>
+      </div>`;
+  }
+  if (sa.outlook) {
+    grid.innerHTML += `
+      <div class="analysis-card card-neutral card-full">
+        <div class="card-title">◉ Strategic Outlook (12–24 Months)</div>
+        <div class="analysis-text">${formatParas(sa.outlook)}</div>
+      </div>`;
+  }
+
+  // RECOMMENDATIONS
+  const recsList = document.getElementById('recs-list');
+  recsList.innerHTML = '';
+  (data.recommendations || []).forEach(rec => {
+    const li = document.createElement('li');
+    li.className = 'rec-item';
+    li.innerHTML = `
+      <div class="rec-num"></div>
+      <div class="rec-content">
+        <div class="rec-title">${rec.title}</div>
+        <div class="rec-desc">${rec.description}</div>
+        <span class="rec-tag">${rec.tag || 'Action Required'}</span>
+      </div>`;
+    recsList.appendChild(li);
+  });
+
+  // SOURCES
+  const sourcesGrid = document.getElementById('sources-grid');
+  sourcesGrid.innerHTML = '';
+  (data.sources || []).forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'source-card';
+    div.innerHTML = `
+      <div class="source-num">SOURCE ${String(i+1).padStart(2,'0')}</div>
+      <div class="source-title">${src.title}</div>
+      <div class="source-pub">${src.publisher || ''}</div>
+      ${src.url ? `<div class="source-url">${src.url}</div>` : ''}
+      <span class="source-type">${src.type || 'Reference'}</span>`;
+    sourcesGrid.appendChild(div);
+  });
+
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function formatParas(text) {
+  if (!text) return '';
+  return text.split(/\n+/).filter(Boolean).map(p => `<p>${p}</p>`).join('');
+}
+</script>
+</body>
+</html>
