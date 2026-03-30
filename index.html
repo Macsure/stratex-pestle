@@ -1140,30 +1140,49 @@ Draw on authoritative sources — government reports, peer-reviewed research, le
         'x-api-key': userApiKey,
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 4000,
         system: SYSTEM_PROMPT,
         messages: [{ role: 'user', content: userPrompt }]
       })
     });
 
-    const data = await response.json();
     clearInterval(msgInterval);
 
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`API Error ${response.status}: ${data.error?.message || JSON.stringify(data)}`);
+    }
+
+    if (!data.content || !data.content.length) {
+      throw new Error('Empty response from API: ' + JSON.stringify(data));
+    }
+
     const raw = data.content.map(b => b.text || '').join('');
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const result = JSON.parse(clean);
+    const clean = raw.replace(/```json[\s\S]*?```|```[\s\S]*?```/g, m => m.replace(/```json|```/g,'')).trim();
+
+    let result;
+    try {
+      result = JSON.parse(clean);
+    } catch(parseErr) {
+      // Try extracting JSON object from response
+      const match = clean.match(/\{[\s\S]*\}/);
+      if (match) result = JSON.parse(match[0]);
+      else throw new Error('JSON parse failed. Raw: ' + clean.substring(0, 200));
+    }
 
     renderResults(result, scenario, region);
 
   } catch (err) {
     clearInterval(msgInterval);
-    console.error(err);
+    console.error('STRATEX Error:', err);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('hero-section').style.display = 'grid';
+    // Show the actual error message to help debug
     document.getElementById('scenario-input').style.borderColor = 'rgba(224,112,112,0.6)';
+    document.getElementById('scenario-input').placeholder = 'Error: ' + err.message;
     document.getElementById('scenario-input').value = '';
-    document.getElementById('scenario-input').placeholder = 'Analysis failed — please try again. Check console for details.';
   } finally {
     btn.disabled = false;
     btn.textContent = '⬡ Run PESTLE Analysis';
